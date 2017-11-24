@@ -1,0 +1,78 @@
+{
+  "name": "@dlom/reddit",
+  "version": "1.0.0",
+  "description": "Very simple Reddit API wrapper :)",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublishOnly": "npm run-script test && npm run-script build",
+    "test": "xo && nyc ava",
+    "test:watch": "ava --watch",
+    "build": "babel src --out-dir dist --source-maps",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": "https://github.com/dlom/reddit",
+  "author": "Mark Old <dlom234@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "got": "^8.0.0"
+  },
+  "devDependencies": {
+    "ava": "^0.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "coveralls": "^3.0.0",
+    "nyc": "^11.3.0",
+    "xo": "^0.18.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "ava": {
+    "files": [
+      "test/**/*.test.js"
+    ],
+    "source": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
+  "xo": {
+    "rules": {
+      "quotes": [
+        "error",
+        "double",
+        {
+          "allowTemplateLiterals": true
+        }
+      ],
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
+      "new-cap": [
+        "error",
+        {
+          "newIsCap": true,
+          "capIsNew": true,
+          "capIsNewExceptions": [
+            "Router"
+          ]
+        }
+      ]
+    }
+  }
+}
