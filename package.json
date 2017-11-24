@@ -62,16 +62,6 @@
       "object-curly-spacing": [
         "error",
         "always"
-      ],
-      "new-cap": [
-        "error",
-        {
-          "newIsCap": true,
-          "capIsNew": true,
-          "capIsNewExceptions": [
-            "Router"
-          ]
-        }
       ]
     }
   }
