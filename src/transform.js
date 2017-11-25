@@ -1,4 +1,5 @@
 import hasOwnProp from "has-own-prop";
+import flatten from "flatten";
 
 const preparePlugin = plugin => {
 	const blacklistSet = new Set(plugin.blacklist);
@@ -18,13 +19,11 @@ const preparePlugin = plugin => {
 };
 
 const generateMappings = (transforms, incoming) => {
-	return transforms.filter(transform => {
+	return flatten(transforms.filter(transform => {
 		return hasOwnProp(incoming, transform[0]);
 	}).map(transform => {
 		return transform[1](incoming);
-	}).reduce((a, b) => {
-		return a.concat(b);
-	});
+	}), 1);
 };
 
 const transformOne = (incoming, mappings, blacklist) => {

@@ -37,7 +37,8 @@ const plugin2 = {
 		["d", "m"],
 		["not", "there"],
 		["bad", "good"],
-		["other", incoming => [["other", `${incoming.other} changed!`]]]
+		["other", incoming => [["other", `${incoming.other} changed!`]]],
+		["b", incoming => (incoming.z === 10) ? [] : [["should", "not be here"]]]
 	],
 	blacklist: [
 		"q"
@@ -82,6 +83,12 @@ test("generateMappings()", t => {
 		t.is(mapping.length, 2);
 		t.is(typeof mapping[0], "string");
 	}
+});
+
+test("generateMappings() - empty array", t => {
+	const preparedPlugin = preparePlugin({ transforms: [], blacklist: [] });
+	generateMappings(preparedPlugin.transforms, incoming);
+	t.pass();
 });
 
 test("transformOne()", t => {

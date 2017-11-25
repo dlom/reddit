@@ -15,6 +15,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "flatten": "^1.0.2",
     "got": "^8.0.0",
     "has-own-prop": "^1.0.0"
   },
