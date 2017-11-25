@@ -52,4 +52,24 @@ const transformProperties = (incoming, plugins) => {
 	}, incoming);
 };
 
-export { preparePlugin, generateMappings, transformOne, transformProperties };
+const createSkeleton = properties => {
+	const symbol = Symbol("skeleton");
+	const transforms = properties.map(property => {
+		return [symbol, () => {
+			return [
+				property
+			];
+		}];
+	});
+	return {
+		symbol,
+		skeleton: {
+			transforms,
+			blacklist: [
+				symbol
+			]
+		}
+	};
+};
+
+export { preparePlugin, generateMappings, transformOne, transformProperties, createSkeleton };

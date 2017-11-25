@@ -1,6 +1,7 @@
 import test from "ava";
+import hasOwnProp from "has-own-prop";
 
-import { preparePlugin, transformOne, generateMappings, transformProperties } from "../src/transform";
+import { preparePlugin, transformOne, generateMappings, transformProperties, createSkeleton } from "../src/transform";
 
 const incoming = {
 	a: "Property 1",
@@ -108,4 +109,39 @@ test("transformProperties()", t => {
 	const outgoing = transformProperties(incoming, plugins);
 	t.is(typeof outgoing, "object");
 	t.deepEqual(outgoing, final2);
+});
+
+test("createSkeleton()", t => {
+	const properties = [
+		["a", 1],
+		["b", 2],
+		["c", 3]
+	];
+
+	const final = {
+		a: 1,
+		b: 2,
+		c: 3
+	};
+
+	const { symbol, skeleton } = createSkeleton(properties);
+	const incoming = {};
+	incoming[symbol] = Symbol("value");
+	const { transforms, blacklist } = skeleton;
+	const outgoing = transformProperties(incoming, [skeleton]);
+
+	t.is(typeof symbol, "symbol");
+	t.true(Array.isArray(transforms));
+	t.is(transforms.length, properties.length);
+	for (const transform of transforms) {
+		t.true(Array.isArray(transform));
+		t.is(transform.length, 2);
+		t.is(typeof transform[0], "symbol");
+		t.is(typeof transform[1], "function");
+	}
+	t.true(Array.isArray(blacklist));
+	t.is(blacklist.length, 1);
+	t.is(blacklist[0], symbol);
+	t.false(hasOwnProp(outgoing, symbol));
+	t.deepEqual(outgoing, final);
 });
