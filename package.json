@@ -15,7 +15,8 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "got": "^8.0.0"
+    "got": "^8.0.0",
+    "has-own-prop": "^1.0.0"
   },
   "devDependencies": {
     "ava": "^0.23.0",

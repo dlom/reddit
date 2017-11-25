@@ -2133,6 +2133,10 @@ has-flag@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-2.0.0.tgz#e8207af1cc7b30d446cc70b734b5e8be18f88d51"
 
+has-own-prop@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/has-own-prop/-/has-own-prop-1.0.0.tgz#7b5e04505ee55896ba32e5018098b481a2f8a0e5"
+
 has-symbol-support-x@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/has-symbol-support-x/-/has-symbol-support-x-1.4.1.tgz#66ec2e377e0c7d7ccedb07a3a84d77510ff1bc4c"
